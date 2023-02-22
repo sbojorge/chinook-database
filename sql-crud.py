@@ -80,16 +80,41 @@ tim_berners_lee = Programmer(
     famous_for="World Wide Web"
 )
 
+sara_bojorge = Programmer(
+    first_name="Sara",
+    last_name="Bojorge",
+    gender="F",
+    nationality="Belgium",
+    famous_for="Career change"
+)
+
 # add each instance of our programmers to our session
-session.add(ada_lovelace)
+# session.add(ada_lovelace)
 # session.add(alan_turing)
 # session.add(grace_hopper)
 # session.add(margaret_hamilton)
 # session.add(bill_gates)
 # session.add(tim_berners_lee)
+# session.add(sara_bojorge)
+
+
+# updating a single record
+# programmer = session.query(Programmer).filter_by(id=8).first()
+# programmer.famous_for = "Programmer of the year 2023"
 
 # commit our session to the database
 # session.commit()
+
+# updating multiple records
+people = session.query(Programmer)
+for person in people:
+    if person.gender == "F":
+        person.gender = "Female"
+    elif person.gender == "M":
+        person.gender = "Male"
+    else:
+        print("Gender not defined")
+    session.commit()
 
 
 # query the database to find all Programmers
